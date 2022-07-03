@@ -1,4 +1,6 @@
-type Album {
+import {gql} from "apollo-server";
+
+export const Album = gql`type Album {
     id: ID!
     name: String
     released: Int
@@ -8,3 +10,4 @@ type Album {
     genres: [Genre]
     image: String
 }
+    `

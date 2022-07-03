@@ -1,3 +1,6 @@
+import {gql} from "apollo-server";
+
+export const User = gql`
 type User {
     id: ID!
     firstName: String
@@ -5,3 +8,7 @@ type User {
     password: String
     email: String!
 }
+extend type Query {
+    user: User
+}
+    `

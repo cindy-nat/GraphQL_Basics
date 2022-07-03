@@ -1,3 +1,6 @@
+import {gql} from "apollo-server";
+
+export const Track = gql`
 type Track {
     id: ID!
     title: String!
@@ -7,3 +10,4 @@ type Track {
     released: Int
     genres: [Genre]
 }
+    `

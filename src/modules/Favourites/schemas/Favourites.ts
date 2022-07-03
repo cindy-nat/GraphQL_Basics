@@ -1,4 +1,6 @@
-type Favourites {
+import {gql} from "apollo-server";
+
+export const Favourites = gql`type Favourites {
     id: ID!
     userId: ID
     bands: [Band]
@@ -6,3 +8,4 @@ type Favourites {
     artists: [Artist]
     tracks: [Track]
 }
+    `

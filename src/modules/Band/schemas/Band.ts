@@ -1,4 +1,7 @@
-type Band {
+import {gql} from "apollo-server";
+
+export const Band = gql`
+    type Band {
     id: ID!
     name: String
     origin: String
@@ -12,3 +15,4 @@ type Member {
     instrument: String,
     years: String
 }
+`
