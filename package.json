@@ -2,10 +2,10 @@
   "name": "graphql_basics",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "src/app.ts",
   "scripts": {
-    "start:prod": "ts-node app.ts",
-    "start:dev": "nodemon app.ts",
+    "start:prod": "ts-node src/app.ts",
+    "start:dev": "nodemon src/app.ts",
     "eslint": "eslint . --ext .ts --fix && prettier --write ."
   },
   "repository": {
