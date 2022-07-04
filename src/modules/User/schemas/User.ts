@@ -10,9 +10,10 @@ type User {
 }
 extend type Query {
     user(id: ID!): User
+    jwt(email:String!, password: String!): String
+
 }
 extend type Mutation {
-    jwt(email:String!, password: String!): String
     register(firstName: String!,lastName: String!, email: String!, password: String!): User
 }
     `;
