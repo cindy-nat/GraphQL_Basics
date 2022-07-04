@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const Genre = gql`type Genre {
     id: ID!
@@ -7,4 +7,4 @@ export const Genre = gql`type Genre {
     country: String
     year: Int
 }
-    `
+    `;

@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const Favourites = gql`type Favourites {
     id: ID!
@@ -8,4 +8,4 @@ export const Favourites = gql`type Favourites {
     artists: [Artist]
     tracks: [Track]
 }
-    `
+    `;

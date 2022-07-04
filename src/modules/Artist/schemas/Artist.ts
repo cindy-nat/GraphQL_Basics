@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const Artist = gql`type Artist {
     id: ID!
@@ -11,4 +11,4 @@ export const Artist = gql`type Artist {
     bands: [Band]
     instruments: String
 }
-    `
+    `;

@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const Album = gql`type Album {
     id: ID!
@@ -10,4 +10,4 @@ export const Album = gql`type Album {
     genres: [Genre]
     image: String
 }
-    `
+    `;

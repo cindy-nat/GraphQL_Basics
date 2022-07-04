@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const User = gql`
 type User {
@@ -11,4 +11,4 @@ type User {
 extend type Query {
     user: User
 }
-    `
+    `;

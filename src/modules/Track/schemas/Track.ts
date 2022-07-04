@@ -1,4 +1,4 @@
-import {gql} from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const Track = gql`
 type Track {
@@ -10,4 +10,4 @@ type Track {
     released: Int
     genres: [Genre]
 }
-    `
+    `;
