@@ -16,4 +16,10 @@ export class UsersAPI extends RESTDataSource {
   async jwt(email, password) {
     return this.post('login', { email, password });
   }
+
+  async register(firstName, lastName, email, password) {
+    return this.post('register', {
+      firstName, lastName, email, password,
+    });
+  }
 }

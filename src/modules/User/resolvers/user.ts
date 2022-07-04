@@ -7,5 +7,9 @@ export const user = {
       const data = await dataSources.usersAPI.jwt(email, password);
       return data.jwt;
     },
+
+    register: async (_source, {
+      firstName, lastName, email, password,
+    }, { dataSources }) => dataSources.usersAPI.register(firstName, lastName, email, password),
   },
 };
