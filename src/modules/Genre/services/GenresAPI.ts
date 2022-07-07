@@ -17,6 +17,10 @@ export class GenresAPI extends RESTDataSource {
         return data.items;
     }
 
+    async getGenre(id: string) {
+        return this.get(`/${id}`);
+    }
+
     willSendRequest(request: RequestOptions) {
         request.headers.set('Authorization', `Bearer ${this.context.token}`);
     }

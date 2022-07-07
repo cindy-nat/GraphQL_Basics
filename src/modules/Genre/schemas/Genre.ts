@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
 export const Genre = gql`type Genre {
-    id: ID!
+    _id: ID!
     name: String
     description: String
     country: String
@@ -9,6 +9,7 @@ export const Genre = gql`type Genre {
 }
 extend type Query {
     genres(limit: Int, offset: Int): [Genre!]
+    genre(id: ID!): Genre
 }
 extend type Mutation {
     createGenre(name: String!, description: String, country: String, year: Int): Genre
