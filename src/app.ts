@@ -1,20 +1,17 @@
 import { ApolloServer, gql } from 'apollo-server';
 import * as dotenv from 'dotenv';
-import { Track } from './modules/Track/schemas/Track';
-import { Album } from './modules/Album/schemas/Aldum';
-import { Favourites } from './modules/Favourites/schemas/Favourites';
-import { Genre } from './modules/Genre/schemas/Genre';
-import { Artist } from './modules/Artist/schemas/Artist';
-import { Band } from './modules/Band/schemas/Band';
-import { User } from './modules/User/schemas/User';
+import {
+  Track, Album, Favourites, Genre, Artist, Band, User,
+  UsersAPI, GenresAPI,
+} from './modules';
 import { user } from './modules/User/resolvers/user';
-import { UsersAPI } from './modules/User/services/UserAPI';
+import { genre } from './modules/Genre/resolvers/genre';
 
 dotenv.config();
 
 const resolvers = {
-  Query: { ...user.Query },
-  Mutation: { ...user.Mutation },
+  Query: { ...user.Query, ...genre.Query },
+  Mutation: { ...user.Mutation, ...genre.Mutation },
 };
 
 const root = gql`
@@ -32,9 +29,14 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => ({
     usersAPI: new UsersAPI(),
+    genresAPI: new GenresAPI(),
   }),
   csrfPrevention: true,
   cache: 'bounded',
+  context: ({req}) => {
+    const token = req.headers.authorization || ''
+    return {token}
+  }
 });
 
 // The `listen` method launches a web server.

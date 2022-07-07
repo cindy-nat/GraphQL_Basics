@@ -7,4 +7,10 @@ export const Genre = gql`type Genre {
     country: String
     year: Int
 }
+extend type Query {
+    genres(limit: Int, offset: Int): [Genre!]
+}
+extend type Mutation {
+    createGenre(name: String!, description: String, country: String, year: Int): Genre
+}
     `;
