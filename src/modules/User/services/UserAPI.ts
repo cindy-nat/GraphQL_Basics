@@ -1,5 +1,5 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
-import * as dotenv from 'dotenv';
+import { RESTDataSource } from "apollo-datasource-rest";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -14,12 +14,15 @@ export class UsersAPI extends RESTDataSource {
   }
 
   async jwt(email, password) {
-    return this.post('login', { email, password });
+    return this.post("login", { email, password });
   }
 
   async register(firstName, lastName, email, password) {
-    return this.post('register', {
-      firstName, lastName, email, password,
+    return this.post("register", {
+      firstName,
+      lastName,
+      email,
+      password,
     });
   }
 }
