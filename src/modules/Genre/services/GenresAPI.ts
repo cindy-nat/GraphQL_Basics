@@ -30,4 +30,10 @@ export class GenresAPI extends RESTDataSource {
             name, description, country, year
         });
     }
+
+    async updateGenre(id, name, description, country, year) {
+        return await this.put(`/${id}`, {
+            name, description, country, year
+        });
+    }
 }

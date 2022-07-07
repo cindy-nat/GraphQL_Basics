@@ -13,5 +13,6 @@ extend type Query {
 }
 extend type Mutation {
     createGenre(name: String!, description: String, country: String, year: Int): Genre
+    updateGenre(id: ID!, name: String, description: String, country: String, year: Int): Genre
 }
     `;
