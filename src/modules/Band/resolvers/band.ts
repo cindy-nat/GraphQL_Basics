@@ -1,71 +1,42 @@
 export const band = {
   Query: {
-    bands: async (_source, { limit, offset }, { dataSources }) => {
-      const bandsData = await dataSources.bandAPI.getBands(limit, offset);
-      return bandsData.map((bandData) => ({
-        ...bandData,
-        genres: bandData.genresIds.map(async (genre) =>
-          dataSources.genresAPI.getGenre(genre)
-        ),
-      }));
-    },
-    band: async (_source, { id }, { dataSources }) => {
-      const bandData = await dataSources.bandAPI.getBand(id);
-      return {
-        ...bandData,
-        genres: bandData.genresIds.map((genre) =>
-          dataSources.genresAPI.getGenre(genre)
-        ),
-      };
+    bands: async (_source, { limit, offset }, { dataSources }) =>
+      dataSources.bandAPI.getBands(limit, offset),
+    band: async (_source, { id }, { dataSources }) =>
+      dataSources.bandAPI.getBand(id),
+  },
+  Band: {
+    id: (parent) => parent._id,
+    genres: (parent, _, { dataSources }) => {
+      const genres = [];
+      parent.genresIds.forEach((genreId) =>
+        genres.push(dataSources.genresAPI.getGenre(genreId))
+      );
+      const result = Promise.all(genres);
+      return result;
     },
   },
-
   Mutation: {
     createBand: async (
       _source,
       { name, origin, members, website, genresIds },
       { dataSources }
-    ) => {
-      const result = await dataSources.bandAPI.createBand(
-        name,
-        origin,
-        members,
-        website,
-        genresIds
-      );
-      return result.genresIds.length > 0
-        ? {
-            ...result,
-            genres: result.genresIds.map((genre) =>
-              dataSources.genresAPI.getGenre(genre)
-            ),
-          }
-        : result;
-    },
+    ) =>
+      dataSources.bandAPI.createBand(name, origin, members, website, genresIds),
 
     updateBand: async (
       _source,
       { id, name, origin, members, website, genresIds },
       { dataSources }
-    ) => {
-      const result = await dataSources.bandAPI.updateBand(
+    ) =>
+      dataSources.bandAPI.updateBand(
         id,
         name,
         origin,
         members,
         website,
         genresIds
-      );
-
-      return result.genresIds.length > 0
-        ? {
-            ...result,
-            genres: result.genresIds.map((genre) =>
-              dataSources.genresAPI.getGenre(genre)
-            ),
-          }
-        : result;
-    },
+      ),
 
     deleteBand: async (_source, { id }, { dataSources }) =>
       dataSources.bandAPI.deleteBand(id),
