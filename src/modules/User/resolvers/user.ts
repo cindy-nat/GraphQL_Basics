@@ -7,6 +7,9 @@ export const user = {
       return data.jwt;
     },
   },
+  User: {
+    id: (parent) => parent._id,
+  },
   Mutation: {
     register: async (
       _source,

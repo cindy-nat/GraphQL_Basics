@@ -2,7 +2,7 @@ import { gql } from "apollo-server";
 
 export const User = gql`
   type User {
-    _id: ID!
+    id: ID!
     firstName: String
     lastName: String
     password: String
