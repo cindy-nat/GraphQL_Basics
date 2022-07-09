@@ -1,5 +1,5 @@
 export * from "./Track/schemas/Track";
-export * from "./Album/schemas/Aldum";
+export * from "./Album/schemas/Album";
 export * from "./Favourites/schemas/Favourites";
 export * from "./Genre/schemas/Genre";
 export * from "./Artist/schemas/Artist";

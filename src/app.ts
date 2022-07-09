@@ -17,25 +17,31 @@ import { artist } from "./modules/Artist/resolvers/artist";
 import { band } from "./modules/Band/resolvers/band";
 import { ArtistAPI } from "./modules/Artist/services/ArtistAPI";
 import { BandAPI } from "./modules/Band/services/BandAPI";
+import { TrackAPI } from "./modules/Track/services/TrackAPI";
+import { track } from "./modules/Track/resolvers/track";
 
 dotenv.config();
 
 const resolvers = {
+  ...user,
   ...band,
   ...genre,
   ...artist,
+  ...track,
   ...{
     Query: {
       ...user.Query,
       ...genre.Query,
       ...band.Query,
       ...artist.Query,
+      ...track.Query,
     },
     Mutation: {
       ...user.Mutation,
       ...genre.Mutation,
       ...band.Mutation,
       ...artist.Mutation,
+      ...track.Mutation,
     },
   },
 };
@@ -63,6 +69,7 @@ const server = new ApolloServer({
     genresAPI: new GenresAPI(),
     artistAPI: new ArtistAPI(),
     bandAPI: new BandAPI(),
+    trackAPI: new TrackAPI(),
   }),
   csrfPrevention: true,
   cache: "bounded",
