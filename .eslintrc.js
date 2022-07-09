@@ -13,11 +13,12 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
     "no-console": "off",
     "max-len": [
       "error",
       {
-        code: 130,
+        code: 150,
       },
     ],
   },
