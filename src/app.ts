@@ -21,17 +21,22 @@ import { BandAPI } from "./modules/Band/services/BandAPI";
 dotenv.config();
 
 const resolvers = {
-  Query: {
-    ...user.Query,
-    ...genre.Query,
-    ...artist.Query,
-    ...band.Query,
-  },
-  Mutation: {
-    ...user.Mutation,
-    ...genre.Mutation,
-    ...artist.Mutation,
-    ...band.Mutation,
+  ...band,
+  ...genre,
+  ...artist,
+  ...{
+    Query: {
+      ...user.Query,
+      ...genre.Query,
+      ...band.Query,
+      ...artist.Query,
+    },
+    Mutation: {
+      ...user.Mutation,
+      ...genre.Mutation,
+      ...band.Mutation,
+      ...artist.Mutation,
+    },
   },
 };
 
