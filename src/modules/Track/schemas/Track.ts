@@ -4,7 +4,7 @@ export const Track = gql`
   type Track {
     id: ID!
     title: String!
-    album: String
+    album: Album
     artists: [Artist]
     bands: [Band]
     duration: Int
@@ -29,7 +29,7 @@ export const Track = gql`
     ): Track
     updateTrack(
       id: ID!
-      title: String!
+      title: String
       albumId: String
       artistsIds: [String]
       bandsIds: [String]

@@ -1,14 +1,12 @@
-export const track = {
+export const album = {
   Query: {
-    tracks: async (_source, { limit, offset }, { dataSources }) =>
-      dataSources.trackAPI.getTracks(limit, offset),
-    track: async (_source, { id }, { dataSources }) =>
-      dataSources.trackAPI.getTrack(id),
+    albums: async (_source, { limit, offset }, { dataSources }) =>
+      dataSources.albumAPI.getAlbums(limit, offset),
+    album: async (_source, { id }, { dataSources }) =>
+      dataSources.albumAPI.getAlbum(id),
   },
-  Track: {
+  Album: {
     id: (parent) => parent._id,
-    album: (parent, _, { dataSources }) =>
-      dataSources.albumAPI.getAlbum(parent.albumId),
     artists: (parent, _, { dataSources }) => {
       const artists = [];
       parent.artistsIds.forEach((artistId) =>
@@ -33,49 +31,46 @@ export const track = {
       const result = Promise.all(bands);
       return result;
     },
+    tracks: (parent, _, { dataSources }) => {
+      const tracks = [];
+      parent.trackIds.forEach((trackId) =>
+        tracks.push(dataSources.trackAPI.getTrack(trackId))
+      );
+      const result = Promise.all(tracks);
+      return result;
+    },
   },
   Mutation: {
-    createTrack: async (
+    createAlbum: async (
       _source,
-      { title, albumId, bandsIds, artistsIds, duration, released, genresIds },
+      { name, released, artistsIds, bandsIds, trackIds, genresIds },
       { dataSources }
     ) =>
-      dataSources.trackAPI.createTrack(
-        title,
-        albumId,
-        bandsIds,
-        artistsIds,
-        duration,
+      dataSources.albumAPI.createAlbum(
+        name,
         released,
+        artistsIds,
+        bandsIds,
+        trackIds,
         genresIds
       ),
 
-    updateTrack: async (
+    updateAlbum: async (
       _source,
-      {
-        id,
-        title,
-        albumId,
-        bandsIds,
-        artistsIds,
-        duration,
-        released,
-        genresIds,
-      },
+      { id, name, released, artistsIds, bandsIds, trackIds, genresIds },
       { dataSources }
     ) =>
-      dataSources.trackAPI.updateTrack(
+      dataSources.albumAPI.updateAlbum(
         id,
-        title,
-        albumId,
-        bandsIds,
-        artistsIds,
-        duration,
+        name,
         released,
+        artistsIds,
+        bandsIds,
+        trackIds,
         genresIds
       ),
 
-    deleteTrack: async (_source, { id }, { dataSources }) =>
-      dataSources.trackAPI.deleteTrack(id),
+    deleteAlbum: async (_source, { id }, { dataSources }) =>
+      dataSources.albumAPI.deleteAlbum(id),
   },
 };
