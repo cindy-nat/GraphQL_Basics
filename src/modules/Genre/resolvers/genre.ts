@@ -5,6 +5,9 @@ export const genre = {
     genre: async (_source, { id }, { dataSources }) =>
       dataSources.genresAPI.getGenre(id),
   },
+  Genre: {
+    id: (parent) => parent._id
+  },
   Mutation: {
     createGenre: async (
       _source,
