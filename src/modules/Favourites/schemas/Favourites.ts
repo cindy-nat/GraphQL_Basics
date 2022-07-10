@@ -9,4 +9,15 @@ export const Favourites = gql`
     artists: [Artist]
     tracks: [Track]
   }
+
+  extend type Query {
+    favourites(limit: Int, offset: Int): Favourites
+  }
+
+  extend type Mutation {
+    addTrackToFavourites(tracksId: String): Favourites
+    addBandToFavourites(bandsId: String): Favourites
+    addArtistToFavourites(artistsId: String): Favourites
+    addGenreToFavourites(genresId: String): Favourites
+  }
 `;

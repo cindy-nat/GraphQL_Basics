@@ -12,3 +12,4 @@ export * from "./Album/services/AlbumAPI";
 export * from "./Artist/services/ArtistAPI";
 export * from "./Band/services/BandAPI";
 export * from "./Track/services/TrackAPI";
+export * from "./Favourites/services/FavouriteAPI";
